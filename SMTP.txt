@@ -1,0 +1,25 @@
+// отправитель - устанавливаем адрес и отображаемое в письме имя
+            MailAddress From = new MailAddress("xToasty2k@yandex.ru", "TRN");
+
+            // кому отправляем
+            MailAddress To = new MailAddress("istrizh@mail.ru");
+
+            // создаем объект сообщения
+
+            MailMessage Message = new MailMessage(From, To);
+            // тема письма
+            Message.Subject = "Тестовое письмо";
+
+            // текст письма
+            Message.Body = "Вы зарегестрированы! Ожидайте проверки модератором";
+
+            // письмо представляет код html
+            Message.IsBodyHtml = true;
+
+            // адрес smtp-сервера и порт, с которого будем отправлять письмо
+
+            SmtpClient smtp = new SmtpClient("smtp.yandex.ru", 587);
+            smtp.Credentials = new NetworkCredential();
+            smtp.EnableSsl = true;
+            smtp.Send(Message);
+            Console.ReadKey();
